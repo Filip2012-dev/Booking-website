@@ -1,177 +1,157 @@
 import Link from "next/link";
-import { ShieldAlert, Book as BookIcon, Zap, Globe, Share2, Gem } from "lucide-react";
+import { Monitor, Eye, Radio, Shield, Zap } from "lucide-react";
+import { dataStore } from "@/lib/store";
 
 export default function Home() {
+  const books = dataStore.getBooks();
+
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono selection:bg-[#00f2ff] selection:text-black">
-      {/* Hero Section */}
-      <header className="relative h-screen flex items-center justify-center overflow-hidden border-b-8 border-[#3f3f3f]">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(#3f3f3f_1px,transparent_1px)] [background-size:20px_20px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#00f2ff]/10 rounded-full blur-[120px]" />
+    <div className="min-h-screen bg-[#050505] text-[#d0d0d0] font-mono selection:bg-[#00eeff] selection:text-black">
+      {/* V-Command Header */}
+      <header className="relative h-screen flex items-center justify-center overflow-hidden border-b-8 border-[#1a1a1a]">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] [background-size:100%_2px,3px_100%]" />
+          <div className="absolute inset-0 bg-[radial-gradient(#00eeff10_1px,transparent_1px)] [background-size:40px_40px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#00eeff]/5 rounded-full blur-[150px]" />
         </div>
 
-        <div className="relative z-10 text-center px-4 max-w-4xl">
-          <div className="flex justify-center mb-8">
-            <div className="w-24 h-24 bg-[#ffd700] flex items-center justify-center border-4 border-black rotate-3 shadow-[8px_8px_0px_0px_rgba(255,215,0,0.3)]">
-              <ShieldAlert size={60} className="text-black -rotate-3" />
+        <div className="relative z-10 text-center px-4 max-w-5xl">
+          <div className="flex justify-center mb-12">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-[#00eeff] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity" />
+              <div className="w-32 h-32 bg-[#121212] flex items-center justify-center border-4 border-[#8b0000] rotate-45 shadow-[10px_10px_0px_0px_#8b0000]">
+                <Monitor size={60} className="text-[#00eeff] -rotate-45" />
+              </div>
+              <div className="absolute -top-4 -right-4 bg-[#8b0000] p-2 border-2 border-white">
+                <Eye size={24} className="text-white" />
+              </div>
             </div>
           </div>
-          <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-4 leading-none">
-            Colossal <span className="text-[#00f2ff]">Era</span>
+
+          <h1 className="text-7xl md:text-9xl font-black uppercase tracking-tighter mb-4 leading-none italic">
+            VOX<span className="text-[#8b0000]">TEK</span> <span className="text-[#00eeff] not-italic">COMMAND</span>
           </h1>
-          <p className="text-xl md:text-2xl font-bold uppercase tracking-[0.2em] mb-12 text-[#888888]">
-            Records of Earth Overus | Sector 001
+          <p className="text-xl md:text-2xl font-bold uppercase tracking-[0.4em] mb-12 text-[#666666] flex items-center justify-center gap-4">
+             <Radio size={24} className="text-[#00eeff]" /> THE FUTURE IS WATCHING <Radio size={24} className="text-[#00eeff]" />
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-8 justify-center">
             <Link
               href="/dashboard"
-              className="bg-[#00f2ff] text-black px-10 py-5 font-black uppercase tracking-widest text-lg hover:translate-y-[-4px] hover:shadow-[0_8px_20px_rgba(0,242,255,0.4)] transition-all active:translate-y-0"
+              className="bg-[#00eeff] text-black px-12 py-6 font-black uppercase tracking-widest text-xl hover:translate-y-[-4px] hover:shadow-[0_0_30px_#00eeff80] transition-all active:translate-y-0 relative overflow-hidden group"
             >
-              Access Terminal
+              <span className="relative z-10">ENTER SYSTEM</span>
+              <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 opacity-10" />
             </Link>
-            <button className="border-4 border-[#3f3f3f] bg-transparent text-white px-10 py-5 font-black uppercase tracking-widest text-lg hover:bg-[#1a1a1a] transition-all">
-              Explore Lore
+            <button className="border-4 border-[#8b0000] bg-transparent text-[#d0d0d0] px-12 py-6 font-black uppercase tracking-widest text-xl hover:bg-[#8b0000] hover:text-white transition-all shadow-[6px_6px_0px_0px_rgba(139,0,0,0.3)]">
+              ARCHIVES
             </button>
           </div>
         </div>
 
-        <div className="absolute bottom-10 left-10 text-[10px] font-bold uppercase tracking-[0.5em] text-[#3f3f3f] hidden lg:block">
-          System Time: {new Date().getFullYear()}.05.25 // Stable
+        <div className="absolute bottom-10 left-10 text-[10px] font-bold uppercase tracking-[0.5em] text-[#666666] hidden lg:flex flex-col gap-2">
+          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-[#00ff00] rounded-full animate-pulse" /> BROADCAST STABLE</div>
+          <div className="flex items-center gap-2"><div className="w-2 h-2 bg-[#8b0000] rounded-full" /> SURVEILLANCE ACTIVE</div>
         </div>
       </header>
 
-      {/* Intro Section */}
+      {/* Corporate Section */}
       <section className="py-32 px-4 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="inline-block px-3 py-1 bg-[#ffd700] text-black font-bold uppercase text-xs tracking-widest">
-              Historical Context
-            </div>
-            <h2 className="text-5xl font-black uppercase tracking-tighter leading-none">
-              An Infinitely Large Earth
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="space-y-10">
+             <div className="flex items-center gap-4">
+                <div className="h-px flex-1 bg-[#2a2a2a]" />
+                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#8b0000]">MANDATORY INFORMATION</span>
+                <div className="h-px flex-1 bg-[#2a2a2a]" />
+             </div>
+            <h2 className="text-6xl font-black uppercase tracking-tighter leading-none italic">
+              Absolute <br /> <span className="text-[#00eeff] not-italic">Connection</span>
             </h2>
-            <p className="text-lg text-[#bbbbbb] leading-relaxed font-serif italic">
-              &ldquo;The Earth of Overus is a vessel of infinite expansion. Every nation, every faction,
-              drawn from across the multiverse to fight in a war that never ends. Technology
-              stalled in 1999, yet powered by the dying cores of a thousand Earths.&rdquo;
+            <p className="text-xl text-[#bbbbbb] leading-relaxed border-l-4 border-[#00eeff] pl-8">
+              &ldquo;We provide the signals. We provide the vision. In the new order of V-Command,
+              there is no distance between the broadcast and the brain. Total media integration
+              is not a choice—it is the evolution.&rdquo;
             </p>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="border-2 border-[#3f3f3f] p-4 bg-[#1a1a1a]">
-                <Zap size={24} className="text-[#ffd700] mb-2" />
-                <h4 className="font-bold uppercase text-xs mb-1">Energy Source</h4>
-                <p className="text-[10px] text-[#888888] uppercase">Planetary Core Extraction</p>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="border-2 border-[#1a1a1a] p-6 bg-[#0c0c0c] hover:border-[#00eeff] transition-colors">
+                <Shield size={32} className="text-[#8b0000] mb-4" />
+                <h4 className="font-bold uppercase text-sm mb-1 tracking-wider">Internal Security</h4>
+                <p className="text-[10px] text-[#666666] uppercase">Zero-Leak Media Protocol</p>
               </div>
-              <div className="border-2 border-[#3f3f3f] p-4 bg-[#1a1a1a]">
-                <Gem size={24} className="text-[#00f2ff] mb-2" />
-                <h4 className="font-bold uppercase text-xs mb-1">Immortality</h4>
-                <p className="text-[10px] text-[#888888] uppercase">Cinan Crystal Synthesis</p>
+              <div className="border-2 border-[#1a1a1a] p-6 bg-[#0c0c0c] hover:border-[#00eeff] transition-colors">
+                <Zap size={32} className="text-[#00eeff] mb-4" />
+                <h4 className="font-bold uppercase text-sm mb-1 tracking-wider">Electric Power</h4>
+                <p className="text-[10px] text-[#666666] uppercase">24/7 Grid Dominance</p>
               </div>
             </div>
           </div>
-          <div className="relative aspect-square border-8 border-[#3f3f3f] bg-[#1a1a1a] flex items-center justify-center p-12 group">
-             <div className="absolute inset-0 opacity-30 grayscale group-hover:grayscale-0 transition-all duration-700 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center" />
-             <div className="relative z-10 w-full h-full border-2 border-dashed border-[#ffd700]/50 flex items-center justify-center">
-                <Globe size={120} className="text-[#ffd700] animate-[pulse_4s_infinite]" />
+          <div className="relative aspect-video border-[12px] border-[#1a1a1a] bg-black shadow-[30px_30px_0px_0px_#121212]">
+             <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center grayscale contrast-150" />
+             <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-[#00eeff] animate-pulse">
+                   <Monitor size={160} strokeWidth={1} />
+                </div>
+             </div>
+             <div className="absolute top-0 left-0 w-full p-2 bg-[#8b0000] text-white text-[10px] font-bold uppercase text-center tracking-[1em]">
+               V-SYSTEM_FEEDS
              </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Books */}
-      <section className="bg-[#1a1a1a] py-32 border-y-8 border-[#3f3f3f]">
+      {/* Featured Broadcasts */}
+      <section className="bg-[#0c0c0c] py-32 border-y-8 border-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div className="border-l-8 border-[#00f2ff] pl-6">
-              <h2 className="text-5xl font-black uppercase tracking-tighter mb-2">Active Serials</h2>
-              <p className="text-[#888888] uppercase tracking-[0.3em] text-sm">Transmissions from the front lines</p>
+            <div className="border-l-8 border-[#8b0000] pl-6">
+              <h2 className="text-5xl font-black uppercase tracking-tighter mb-2 italic">Active Channels</h2>
+              <p className="text-[#666666] uppercase tracking-[0.3em] text-sm">Official propaganda streams</p>
             </div>
-            <button className="text-[10px] font-black uppercase tracking-widest text-[#00f2ff] hover:underline flex items-center gap-2">
-              View All Archives <Zap size={14} />
-            </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "The God of Overus", author: "Sergey Taboritsky", tag: "Main Story" },
-              { title: "The Loji Incident", author: "Philip IV", tag: "Historical" },
-              { title: "Cinan Dreams", author: "Unknown", tag: "Propaganda" },
-            ].map((book, i) => (
-              <div key={i} className="group cursor-pointer">
-                <div className="aspect-[2/3] bg-[#0a0a0a] border-4 border-[#3f3f3f] mb-4 overflow-hidden relative transition-transform group-hover:translate-y-[-8px]">
-                   <div className="absolute inset-0 bg-[#00f2ff]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                   <div className="absolute bottom-4 left-4 right-4">
-                      <div className="text-[10px] font-bold text-[#00f2ff] uppercase mb-1">{book.tag}</div>
-                      <h3 className="text-2xl font-black uppercase leading-none">{book.title}</h3>
-                   </div>
-                   <div className="absolute top-4 right-4 text-[#3f3f3f] group-hover:text-[#00f2ff] transition-colors">
-                      <BookIcon size={32} />
-                   </div>
-                </div>
-                <div className="flex justify-between items-center px-1">
-                   <span className="text-xs font-bold uppercase text-[#888888]">{book.author}</span>
-                   <span className="text-[10px] text-[#3f3f3f]">VOL. {i+1}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Social Feed Preview */}
-      <section className="py-32 px-4 max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <Share2 size={48} className="text-[#ff00ff] mx-auto mb-6" />
-          <h2 className="text-4xl font-black uppercase tracking-tight mb-4">Live Transmissions</h2>
-          <div className="w-24 h-1 bg-[#ff00ff] mx-auto" />
-        </div>
-
-        <div className="space-y-4">
-          {[
-            { user: "Sergey_T", text: "The Archangelic Regime sees everything. Your loyalty is your life." },
-            { user: "Resistance_01", text: "The crystals are failing. Philip was right about the cores." },
-            { user: "News_Bot", text: "New artifacts found in Sector 7 resemble &apos;Fallout&apos; era tech." }
-          ].map((post, i) => (
-            <div key={i} className="p-6 border-2 border-[#3f3f3f] bg-[#1a1a1a] flex gap-6 items-start hover:border-[#ff00ff] transition-colors">
-              <div className="text-[#ff00ff] font-bold text-xs pt-1">[@]</div>
-              <div>
-                <div className="font-bold uppercase text-xs mb-1">{post.user}</div>
-                <p className="text-sm text-[#bbbbbb]">{post.text}</p>
-              </div>
+          {books.length === 0 ? (
+            <div className="py-24 text-center border-4 border-dashed border-[#1a1a1a] text-[#2a2a2a] italic font-black uppercase tracking-[0.5em]">
+               Awaiting First Broadcast...
             </div>
-          ))}
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+              {books.map((book, i) => (
+                <Link key={book.id} href={`/books/${book.id}`} className="group cursor-pointer">
+                  <div className="aspect-[16/10] bg-[#121212] border-4 border-[#1a1a1a] mb-6 overflow-hidden relative transition-all group-hover:border-[#00eeff] group-hover:scale-[1.02]">
+                     {book.coverImage ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={book.coverImage} alt={book.title} className="w-full h-full object-cover grayscale contrast-125" />
+                     ) : (
+                        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                           <Monitor size={80} />
+                        </div>
+                     )}
+                     <div className="absolute bottom-6 left-6 right-6">
+                        <div className="text-[10px] font-bold text-[#888888] uppercase mb-2 group-hover:text-[#00eeff] transition-colors">Broadcast</div>
+                        <h3 className="text-3xl font-black uppercase leading-none group-hover:italic transition-all">{book.title}</h3>
+                     </div>
+                  </div>
+                  <div className="flex justify-between items-center px-1">
+                     <span className="text-xs font-bold uppercase text-[#666666]">PRODUCER: {book.author}</span>
+                     <span className="text-[10px] text-[#8b0000] font-black">CH.{i+10}</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black border-t-8 border-[#3f3f3f] py-16 px-4">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-          <div>
-            <div className="text-2xl font-black uppercase tracking-tighter mb-2">
-              Colossal <span className="text-[#00f2ff]">Era</span>
+      <footer className="bg-black border-t-8 border-[#8b0000] py-24 px-4">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
+          <div className="text-center md:text-left">
+            <div className="text-4xl font-black uppercase tracking-tighter mb-4 italic">
+              VOX<span className="text-[#8b0000]">TEK</span>
             </div>
-            <p className="text-[10px] text-[#3f3f3f] uppercase tracking-widest font-bold">
-              © {new Date().getFullYear()} Archangelic Intellectual Property
+            <p className="text-[10px] text-[#2a2a2a] uppercase tracking-widest font-bold max-w-xs">
+              Property of V-Command Corp. Unauthorised viewing is a punishable offense.
             </p>
-          </div>
-          <div className="flex gap-12">
-            <div className="space-y-4">
-               <div className="text-[10px] font-black uppercase text-[#888888]">Protocol</div>
-               <ul className="text-xs space-y-2 font-bold uppercase">
-                 <li className="hover:text-[#00f2ff] cursor-pointer">Security</li>
-                 <li className="hover:text-[#00f2ff] cursor-pointer">Archive</li>
-                 <li className="hover:text-[#00f2ff] cursor-pointer">Regime</li>
-               </ul>
-            </div>
-            <div className="space-y-4">
-               <div className="text-[10px] font-black uppercase text-[#888888]">Connect</div>
-               <ul className="text-xs space-y-2 font-bold uppercase">
-                 <li className="hover:text-[#ff00ff] cursor-pointer">Terminal</li>
-                 <li className="hover:text-[#ff00ff] cursor-pointer">Signal</li>
-                 <li className="hover:text-[#ff00ff] cursor-pointer">Broadcast</li>
-               </ul>
-            </div>
           </div>
         </div>
       </footer>

@@ -1,95 +1,94 @@
 import Link from "next/link";
-import { ArrowLeft, ChevronLeft, ChevronRight, Settings, List } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, Settings, List, Monitor } from "lucide-react";
 
 export default function ReadingPage() {
   const chapter = {
-    title: "Loji's Final Performance",
-    bookTitle: "The God of Overus",
+    title: "THE EYE OF THE STORM",
+    bookTitle: "THE VOX PROTOCOL",
     content: `
-      The crystals hummed with an intensity that Philip had never felt before. The stage was bathed in a sickly violet glow, the Cinan crystals at the corners of the theater pulsing like the heart of Overus itself.
+      THE SIGNAL IS EVERYTHING. THE VOICE IS EVERYWHERE.
 
-      Loji stood at the center, her voice rising above the mechanical roar of the ventilation systems. She was singing a song from the old world—the Earth that had been consumed to power this very building. It was a melody of green fields and blue skies, things that now only existed in the flickering memory-banks of the Archangelic Regime.
+      DO NOT TURN OFF THE MONITOR. DO NOT LOOK AWAY FROM THE LIGHT. THE ELECTRICITY IN YOUR VEINS IS THE BRAND OF THE EMPIRE.
 
-      Sergey sat in the high balcony, his face obscured by the golden mask of the God-King. He didn't move. He didn't applaud. He simply watched.
+      V-COMMAND SEES YOUR THOUGHTS BEFORE YOU THINK THEM. INTEGRATION IS NOT A PROCESS, IT IS A STATE OF BEING.
 
-      "The energy is spiking," Philip whispered into his comms. "The extraction is exceeding safety limits."
+      LOOK INTO THE SCREEN. SEE THE FUTURE WE HAVE BUILT FOR YOU. A WORLD OF PURE CONNECTION. A WORLD OF PURE ORDER.
 
-      But no one was listening. The audience, a mix of high-ranking brutalist officers and the few elite who could afford a ticket to the God-King's theater, sat in rapt silence.
-
-      Then, the hum became a scream. A single beam of pure crystal energy lanced down from the ceiling.
-
-      Loji didn't even have time to look up.
+      THE BROADCAST NEVER ENDS. THE VOICE NEVER SLEEPS.
     `,
     order: 2,
-    totalChapters: 3
+    totalChapters: 2
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#e0e0e0] font-mono flex flex-col">
+    <div className="min-h-screen bg-[#050505] text-[#d0d0d0] font-mono flex flex-col">
       {/* Reading Header */}
-      <nav className="h-16 border-b-2 border-[#3f3f3f] bg-[#1a1a1a] flex items-center justify-between px-4 md:px-8 sticky top-0 z-50">
-        <div className="flex items-center gap-4">
-           <Link href="/books/1" className="text-[#888888] hover:text-white transition-colors">
-              <ArrowLeft size={20} />
+      <nav className="h-20 border-b-4 border-[#1a1a1a] bg-black flex items-center justify-between px-10 sticky top-0 z-50">
+        <div className="flex items-center gap-6">
+           <Link href="/books/1" className="text-[#666666] hover:text-[#00eeff] transition-all">
+              <ArrowLeft size={24} />
            </Link>
            <div className="hidden md:block">
-              <div className="text-[10px] font-bold text-[#888888] uppercase leading-none">{chapter.bookTitle}</div>
-              <div className="text-sm font-black uppercase tracking-tight">{chapter.title}</div>
+              <div className="text-[10px] font-black text-[#8b0000] uppercase leading-none tracking-widest">{chapter.bookTitle}</div>
+              <div className="text-lg font-black uppercase tracking-tight italic">{chapter.title}</div>
            </div>
         </div>
 
-        <div className="flex items-center gap-4 md:gap-8">
-           <button className="text-[#888888] hover:text-[#00f2ff] transition-colors"><List size={20} /></button>
-           <button className="text-[#888888] hover:text-[#00f2ff] transition-colors"><Settings size={20} /></button>
-           <div className="h-8 w-px bg-[#3f3f3f]" />
-           <div className="flex items-center gap-2">
-              <Link href="#" className="p-2 border border-[#3f3f3f] hover:bg-[#2a2a2a] transition-colors text-[#3f3f3f]">
-                 <ChevronLeft size={20} />
+        <div className="flex items-center gap-10">
+           <button className="text-[#2a2a2a] hover:text-[#00eeff] transition-colors"><List size={24} /></button>
+           <button className="text-[#2a2a2a] hover:text-[#00eeff] transition-colors"><Settings size={24} /></button>
+           <div className="h-10 w-px bg-[#1a1a1a]" />
+           <div className="flex items-center gap-4">
+              <Link href="#" className="p-3 border-2 border-[#1a1a1a] text-[#1a1a1a]">
+                 <ChevronLeft size={24} />
               </Link>
-              <span className="text-xs font-bold tabular-nums">02 / 03</span>
-              <Link href="#" className="p-2 border border-[#3f3f3f] hover:bg-[#2a2a2a] transition-colors hover:text-[#00f2ff] hover:border-[#00f2ff]">
-                 <ChevronRight size={20} />
+              <span className="text-sm font-black tabular-nums italic">02 / 02</span>
+              <Link href="#" className="p-3 border-2 border-[#1a1a1a] text-[#1a1a1a]">
+                 <ChevronRight size={24} />
               </Link>
            </div>
         </div>
       </nav>
 
       {/* Reader Content */}
-      <main className="flex-1 overflow-y-auto">
-         <article className="max-w-2xl mx-auto py-16 px-6">
-            <div className="text-center mb-16">
-               <div className="text-[#ffd700] text-xs font-black uppercase tracking-[0.4em] mb-4">Transmission 002</div>
-               <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8 leading-tight">
+      <main className="flex-1 overflow-y-auto bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]">
+         <article className="max-w-3xl mx-auto py-24 px-10">
+            <div className="text-center mb-24 relative">
+               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-12 opacity-10">
+                  <Monitor size={120} />
+               </div>
+               <div className="text-[#00eeff] text-[10px] font-black uppercase tracking-[0.6em] mb-6">SIGNAL_SEGMENT_002</div>
+               <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10 leading-none italic">
                   {chapter.title}
                </h1>
-               <div className="w-12 h-1 bg-[#3f3f3f] mx-auto" />
+               <div className="w-24 h-2 bg-[#8b0000] mx-auto shadow-[0_0_15px_#8b000080]" />
             </div>
 
-            <div className="font-serif text-xl leading-relaxed text-[#d0d0d0] space-y-8 first-letter:text-5xl first-letter:font-black first-letter:mr-3 first-letter:float-left first-letter:text-[#00f2ff]">
+            <div className="font-bold text-2xl leading-relaxed text-[#888888] space-y-12 uppercase italic text-center">
                {chapter.content.trim().split('\n\n').map((para, i) => (
-                  <p key={i}>{para.trim()}</p>
+                  <p key={i} className="hover:text-[#d0d0d0] transition-colors duration-500">{para.trim()}</p>
                ))}
             </div>
 
-            <div className="mt-24 pt-12 border-t-4 border-[#3f3f3f] flex flex-col md:flex-row justify-between gap-8 items-center">
-               <div className="text-[10px] font-bold text-[#3f3f3f] uppercase tracking-widest">
-                  End of Transmission // Source: Sector_Prime_Archive
+            <div className="mt-32 pt-16 border-t-8 border-[#1a1a1a] flex flex-col md:flex-row justify-between gap-12 items-center">
+               <div className="text-[10px] font-black text-[#2a2a2a] uppercase tracking-[0.6em]">
+                  END_OF_BROADCAST // V-COMMAND_SECURE
                </div>
-               <div className="flex gap-4">
-                  <Link href="/books/1" className="px-6 py-3 border-2 border-[#3f3f3f] font-bold uppercase text-xs tracking-widest hover:bg-[#1a1a1a]">
-                     Table of Contents
+               <div className="flex gap-6">
+                  <Link href="/books/1" className="px-10 py-5 border-4 border-[#1a1a1a] font-black uppercase text-xs tracking-widest hover:bg-[#0c0c0c] transition-all">
+                     INDEX
                   </Link>
-                  <Link href="#" className="px-6 py-3 bg-[#00f2ff] text-black font-black uppercase text-xs tracking-widest hover:translate-y-[-2px] transition-transform">
-                     Next Chapter
+                  <Link href="#" className="px-10 py-5 bg-[#8b0000] text-white font-black uppercase text-xs tracking-widest hover:shadow-[0_0_25px_#8b0000a0] transition-all">
+                     NEXT_FEED
                   </Link>
                </div>
             </div>
          </article>
       </main>
 
-      {/* Progress Bar */}
-      <div className="h-1 w-full bg-[#1a1a1a]">
-         <div className="h-full bg-[#00f2ff] w-[66%] shadow-[0_0_8px_rgba(0,242,255,0.6)]" />
+      {/* Status Bar */}
+      <div className="h-2 w-full bg-black flex">
+         <div className="h-full bg-[#00eeff] w-[100%] shadow-[0_0_15px_#00eeff]" />
       </div>
     </div>
   );

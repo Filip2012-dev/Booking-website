@@ -1,29 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Book as BookIcon, Trash2, Edit3, Image as ImageIcon } from "lucide-react";
+import { Plus, Monitor, Trash2, Edit3, Image as ImageIcon, Eye } from "lucide-react";
 import { Book } from "@/lib/constants";
+import { dataStore } from "@/lib/store";
 
-export default function BooksManager() {
-  const [books, setBooks] = useState<Book[]>([
-    {
-      id: "1",
-      title: "The God of Overus",
-      description: "Sergey Taboritsky's rise to power and the assassination of Loji.",
-      coverImage: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400",
-      author: "Sergey Taboritsky",
-      createdAt: "2024-05-20",
-    },
-    {
-      id: "2",
-      title: "Archangelic Fallout",
-      description: "Technology from other universes leaking into Overus.",
-      coverImage: "https://images.unsplash.com/photo-1533972751724-9135a8410a4c?auto=format&fit=crop&q=80&w=400",
-      author: "Philip IV",
-      createdAt: "2024-05-22",
-    }
-  ]);
-
+export default function BroadcastsManager() {
+  const [books, setBooks] = useState<Book[]>(dataStore.getBooks());
   const [isAdding, setIsAdding] = useState(false);
   const [newBook, setNewBook] = useState({ title: "", description: "", coverImage: "" });
 
@@ -32,117 +15,126 @@ export default function BooksManager() {
     const book: Book = {
       ...newBook,
       id: Math.random().toString(36).substr(2, 9),
-      author: "Admin",
+      author: "V-PRODUCER",
       createdAt: new Date().toISOString().split('T')[0],
     };
-    setBooks([...books, book]);
+    dataStore.addBook(book);
+    setBooks([...dataStore.getBooks()]);
     setNewBook({ title: "", description: "", coverImage: "" });
     setIsAdding(false);
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex justify-between items-end">
-        <div className="border-l-4 border-[#00f2ff] pl-4">
-          <h1 className="text-4xl font-black uppercase tracking-tighter">Book Archives</h1>
-          <p className="text-[#888888] mt-2 uppercase text-xs tracking-[0.3em]">Cataloging the stories of Earth Overus</p>
+    <div className="space-y-12">
+      <div className="flex justify-between items-end border-b-4 border-[#1a1a1a] pb-8">
+        <div className="border-l-8 border-[#00eeff] pl-6">
+          <h1 className="text-5xl font-black uppercase tracking-tighter italic">BROADCAST <span className="text-[#8b0000] not-italic">CHANNELS</span></h1>
+          <p className="text-[#666666] mt-2 uppercase text-xs font-black tracking-[0.5em]">Establishing New Media Streams</p>
         </div>
         <button
           onClick={() => setIsAdding(!isAdding)}
-          className="bg-[#00f2ff] text-black px-6 py-3 font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-[#00d8e6] transition-colors"
+          className="bg-[#00eeff] text-black px-8 py-4 font-black uppercase tracking-widest flex items-center gap-3 hover:bg-white transition-all shadow-[6px_6px_0px_0px_#8b0000] active:scale-95"
         >
-          <Plus size={20} />
-          {isAdding ? "Cancel" : "New Record"}
+          <Plus size={24} />
+          {isAdding ? "CANCEL" : "NEW UPLINK"}
         </button>
       </div>
 
       {isAdding && (
-        <form onSubmit={handleAddBook} className="bg-[#1a1a1a] border-4 border-[#00f2ff] p-8 space-y-6 animate-in fade-in slide-in-from-top-4 duration-300">
-          <h2 className="text-xl font-bold uppercase mb-4">Initialize New Book Protocol</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
+        <form onSubmit={handleAddBook} className="bg-[#0c0c0c] border-4 border-[#00eeff] p-10 space-y-8 animate-in zoom-in-95 duration-300">
+          <h2 className="text-2xl font-black uppercase italic text-[#00eeff]">INITIALISING STREAM PROTOCOL</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="space-y-6">
               <div>
-                <label className="block text-[10px] uppercase font-bold text-[#888888] mb-2">Book Title</label>
+                <label className="block text-[10px] uppercase font-black text-[#666666] mb-3 tracking-widest">CHANNEL TITLE</label>
                 <input
                   required
                   value={newBook.title}
                   onChange={e => setNewBook({...newBook, title: e.target.value})}
-                  className="w-full bg-[#2a2a2a] border-2 border-[#3f3f3f] p-3 focus:border-[#00f2ff] outline-none"
-                  placeholder="e.g. Chronicles of Cinan"
+                  className="w-full bg-black border-2 border-[#1a1a1a] p-4 focus:border-[#00eeff] outline-none font-bold text-white uppercase"
+                  placeholder="ID_TITLE..."
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase font-bold text-[#888888] mb-2">Cover Image URL</label>
+                <label className="block text-[10px] uppercase font-black text-[#666666] mb-3 tracking-widest">FEED VISUAL URL</label>
                 <div className="relative">
-                  <ImageIcon size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#888888]" />
+                  <ImageIcon size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#666666]" />
                   <input
                     value={newBook.coverImage}
                     onChange={e => setNewBook({...newBook, coverImage: e.target.value})}
-                    className="w-full bg-[#2a2a2a] border-2 border-[#3f3f3f] p-3 pl-10 focus:border-[#00f2ff] outline-none"
-                    placeholder="https://..."
+                    className="w-full bg-black border-2 border-[#1a1a1a] p-4 pl-12 focus:border-[#00eeff] outline-none font-bold text-white"
+                    placeholder="HTTPS://IMAGE_LINK"
                   />
                 </div>
               </div>
             </div>
             <div>
-              <label className="block text-[10px] uppercase font-bold text-[#888888] mb-2">Lore Description</label>
+              <label className="block text-[10px] uppercase font-black text-[#666666] mb-3 tracking-widest">MANDATORY DESCRIPTION</label>
               <textarea
                 required
                 value={newBook.description}
                 onChange={e => setNewBook({...newBook, description: e.target.value})}
-                className="w-full h-full min-h-[120px] bg-[#2a2a2a] border-2 border-[#3f3f3f] p-3 focus:border-[#00f2ff] outline-none resize-none"
-                placeholder="Describe the historical significance..."
+                className="w-full h-full min-h-[160px] bg-black border-2 border-[#1a1a1a] p-4 focus:border-[#00eeff] outline-none resize-none font-bold text-white uppercase"
+                placeholder="DESCRIBE THE BROADCAST OBJECTIVE..."
               />
             </div>
           </div>
-          <button type="submit" className="w-full bg-[#00f2ff] text-black font-black py-4 uppercase tracking-[0.2em]">
-            Archive to Core
+          <button type="submit" className="w-full bg-[#8b0000] text-white font-black py-5 uppercase tracking-[0.4em] shadow-[0_0_20px_rgba(139,0,0,0.3)] hover:bg-[#a00000] transition-all">
+            CONFIRM UPLINK
           </button>
         </form>
       )}
 
-      <div className="grid grid-cols-1 gap-6">
-        {books.map(book => (
-          <div key={book.id} className="bg-[#1a1a1a] border-2 border-[#3f3f3f] flex flex-col md:flex-row group hover:border-[#00f2ff] transition-colors">
-            <div className="w-full md:w-48 h-64 md:h-auto relative overflow-hidden bg-[#2a2a2a]">
-              {book.coverImage ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={book.coverImage} alt={book.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-[#3f3f3f]">
-                  <BookIcon size={48} />
-                </div>
-              )}
-            </div>
-            <div className="flex-1 p-6 flex flex-col">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-2xl font-black uppercase tracking-tight mb-1">{book.title}</h3>
-                  <div className="flex gap-4 text-[10px] font-bold uppercase text-[#888888]">
-                    <span>Author: {book.author}</span>
-                    <span>Created: {book.createdAt}</span>
+      {books.length === 0 ? (
+        <div className="py-24 border-4 border-dashed border-[#1a1a1a] flex flex-col items-center justify-center text-[#2a2a2a]">
+           <Monitor size={80} strokeWidth={1} />
+           <p className="mt-6 font-black uppercase tracking-[0.5em]">NO CHANNELS DETECTED</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-8">
+          {books.map(book => (
+            <div key={book.id} className="bg-[#0c0c0c] border-4 border-[#1a1a1a] flex flex-col md:flex-row group hover:border-[#00eeff] transition-all shadow-[10px_10px_0px_0px_#121212]">
+              <div className="w-full md:w-64 h-80 md:h-auto relative overflow-hidden bg-black border-r-4 border-[#1a1a1a]">
+                {book.coverImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={book.coverImage} alt={book.title} className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-[#1a1a1a]">
+                    <Monitor size={64} />
+                  </div>
+                )}
+                <div className="absolute top-4 left-4 bg-black/80 px-2 py-1 text-[8px] font-black uppercase text-[#00eeff] border border-[#00eeff]">LIVE_FEED</div>
+              </div>
+              <div className="flex-1 p-8 flex flex-col">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-4xl font-black uppercase tracking-tight mb-2 italic group-hover:text-[#00eeff] transition-colors">{book.title}</h3>
+                    <div className="flex gap-6 text-[10px] font-black uppercase text-[#666666] tracking-widest">
+                      <span className="flex items-center gap-2"><Eye size={12} className="text-[#8b0000]" /> {book.author}</span>
+                      <span>{book.createdAt}</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <button className="p-3 border-2 border-[#1a1a1a] hover:bg-[#1a1a1a] transition-colors"><Edit3 size={20} /></button>
+                    <button className="p-3 border-2 border-[#1a1a1a] hover:bg-[#8b0000] hover:border-[#8b0000] transition-colors"><Trash2 size={20} /></button>
                   </div>
                 </div>
-                <div className="flex gap-2">
-                  <button className="p-2 border border-[#3f3f3f] hover:bg-[#3f3f3f] transition-colors"><Edit3 size={16} /></button>
-                  <button className="p-2 border border-[#3f3f3f] hover:bg-[#990000] hover:border-[#990000] transition-colors"><Trash2 size={16} /></button>
+                <p className="mt-8 text-sm text-[#888888] leading-relaxed line-clamp-4 font-bold uppercase">
+                  {book.description}
+                </p>
+                <div className="mt-auto pt-10 flex gap-6">
+                  <button className="text-[10px] font-black uppercase tracking-[0.3em] px-6 py-3 bg-black border-2 border-[#1a1a1a] hover:border-[#00eeff] hover:text-[#00eeff] transition-all">
+                    MANAGE SEGMENTS
+                  </button>
+                  <button className="text-[10px] font-black uppercase tracking-[0.3em] px-6 py-3 border-2 border-transparent text-[#8b0000] hover:bg-[#8b0000] hover:text-white transition-all">
+                    PUBLIC VIEW
+                  </button>
                 </div>
               </div>
-              <p className="mt-4 text-sm text-[#bbbbbb] leading-relaxed line-clamp-3">
-                {book.description}
-              </p>
-              <div className="mt-auto pt-6 flex gap-4">
-                <button className="text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-2 bg-[#2a2a2a] border border-[#3f3f3f] hover:border-[#00f2ff] transition-colors">
-                  Manage Chapters
-                </button>
-                <button className="text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-2 border border-transparent text-[#00f2ff] hover:underline">
-                  View Public Page
-                </button>
-              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

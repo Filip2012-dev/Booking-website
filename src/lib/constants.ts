@@ -1,20 +1,17 @@
 export const THEME = {
   colors: {
-    brutalist: {
-      bg: "#1a1a1a",
-      surface: "#2a2a2a",
-      border: "#3f3f3f",
-      text: "#e0e0e0",
-      muted: "#888888",
+    industrial: {
+      bg: "#0a0a0a",
+      surface: "#1a1a1a",
+      border: "#2a2a2a",
+      text: "#d0d0d0",
+      muted: "#666666",
+      red: "#8b0000",
     },
-    crystal: {
-      primary: "#00f2ff",
-      secondary: "#008891",
-      glow: "rgba(0, 242, 255, 0.5)",
-    },
-    regime: {
-      gold: "#ffd700",
-      crimson: "#990000",
+    vox: {
+      blue: "#00eeff",
+      glow: "rgba(0, 238, 255, 0.4)",
+      monitor: "#121212",
     }
   }
 };
